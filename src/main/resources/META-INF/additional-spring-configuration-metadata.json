@@ -1,0 +1,13 @@
+{"properties": [{
+  "name": "h2.console.path",
+  "type": "java.lang.String",
+  "description": "A description for 'h2.console.path'"
+}]}{"properties": [{
+  "name": "h2.console.enabled",
+  "type": "java.lang.String",
+  "description": "A description for 'h2.console.enabled'"
+}]}{"properties": [{
+  "name": "jpa.hibernate.ddl-auto",
+  "type": "java.lang.String",
+  "description": "A description for 'jpa.hibernate.ddl-auto'"
+}]}

@@ -1,0 +1,79 @@
+spring:
+  profiles:
+    group:
+      development:
+        - test_database
+        - common
+      production:
+        - production_database
+        - common
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+ 
+# logging:
+#    level:
+#      org.hibernate.SQL: trace
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test_database
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: h2
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+server:
+  port: 8080
+ 
+---
+spring:
+  config:
+    activate:
+      on-profile: production_database
+  datasource:
+    url: jdbc:mysql://database-1.cwctahfsfhgo.ap-northeast-1.rds.amazonaws.com/database
+    username: admin
+    password: rroot+!#$
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8080
+
+
+# #h2 console 활성화 및 경로 설정
+# spring.h2.console.enabled=true
+# spring.h2.console.path=/h2-console
+
+# #h2 db 설정
+# spring.datasource.url=jdbc:h2:~/test;
+# spring.datasource.driverClassName=org.h2.Driver
+# spring.datasource.username=sa
+# spring.datasource.password=
+# spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+# spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect
+
+# #hibernate 설정
+# spring.jpa.properties.hibernate.format_sql=true
+# spring.jpa.properties.hibernate.show_sql=true
+# spring.jpa.hibernate.ddl-auto=create
